@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
+
+import BubblePage from './components/BubblePage'
 import Login from "./components/Login";
 import "./styles.scss";
+import PrivateRoute from "./components/PrivateRoute";
+
+const handleLogout = () =>{
+  localStorage.removeItem("token")
+  window.location.href = "login"
+}
 
 function App() {
   return (
@@ -10,8 +18,15 @@ function App() {
       <div className="App">
         <header>
           Color Picker Sprint Challenge
-          <a data-testid="logoutButton" href="#">logout</a>
+          <a onClick={handleLogout} data-testid="logoutButton" href="#">logout</a>
+          <Link to="/login">Login</Link>
+          
         </header>
+        <Switch>
+          <PrivateRoute path="/bubblepage" component={BubblePage}/>
+            <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/" component={Login}></Route>
+          </Switch>
       </div>
     </Router>
   );
