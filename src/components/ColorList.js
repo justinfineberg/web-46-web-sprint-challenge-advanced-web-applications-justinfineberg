@@ -11,7 +11,7 @@ const ColorList = (props) => {
     <div className="colors-wrap">
       <p id="color_title">colors</p>
       <ul>
-        {colors.map(color => <Color key={color.id} setEditColor={setEditColor} color={color} toggleEdit={toggleEdit} deleteColor={deleteColor}/>)}
+        {colors.map(color => <Color key={color.id} data-testid="color"setEditColor={setEditColor} color={color} toggleEdit={toggleEdit} deleteColor={deleteColor}/>)}
       </ul>
       
       {editing && <EditMenu editColor={editColor} setEditColor={setEditColor} toggleEdit={toggleEdit} saveEdit={saveEdit}/>}
